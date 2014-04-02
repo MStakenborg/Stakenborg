@@ -1,0 +1,15 @@
+<div style='font-family: sans-serif'>
+  <p>
+    Student(s),
+  </p>
+  <p>
+    Please find the attached grade report for:
+  </p>
+  <p>
+    <strong>$code, $title, $term</strong>.
+  </p>
+  <p>
+    Sincerely,<br/>
+    $professor
+  </p>
+</div>

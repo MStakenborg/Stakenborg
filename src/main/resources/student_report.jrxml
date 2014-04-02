@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="student_report" language="java" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9bf4afb-b923-4a7b-8563-cb36b49a132c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Deliverables"/>
+	<style name="Grade" hAlign="Right" pattern="">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{grade} < 50]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{grade} < 70 && $F{grade} >= 50]]></conditionExpression>
+			<style forecolor="#FF8040"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{grade} >= 80]]></conditionExpression>
+			<style forecolor="#008000"/>
+		</conditionalStyle>
+	</style>
+	<style name="Weight" hAlign="Right" pattern="#,##0.0##;(#,##0.0##-)"/>
+	<style name="ClassAverage" hAlign="Right" pattern="">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{classAvg} < 50]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{classAvg} < 70 && $F{classAvg} >= 50]]></conditionExpression>
+			<style forecolor="#FF8040"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{classAvg} >= 80]]></conditionExpression>
+			<style forecolor="#008000"/>
+		</conditionalStyle>
+	</style>
+	<style name="Percent" hAlign="Left" pattern="#,##0.0##;(#,##0.0##-)"/>
+	<parameter name="logo" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="student" class="ca.uwo.csd.cs2212.team9.Student" isForPrompting="false"/>
+	<parameter name="course" class="ca.uwo.csd.cs2212.team9.Course" isForPrompting="false"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="classAvg" class="java.lang.Double">
+		<fieldDescription><![CDATA[classAvg]]></fieldDescription>
+	</field>
+	<field name="grade" class="java.lang.Double">
+		<fieldDescription><![CDATA[grade]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="type" class="java.lang.String">
+		<fieldDescription><![CDATA[type]]></fieldDescription>
+	</field>
+	<field name="weight" class="java.lang.Double">
+		<fieldDescription><![CDATA[weight]]></fieldDescription>
+	</field>
+	<sortField name="type"/>
+	<sortField name="weight"/>
+	<sortField name="name"/>
+	<variable name="grade" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{grade}]]></variableExpression>
+	</variable>
+	<variable name="classAvg" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{classAvg}]]></variableExpression>
+	</variable>
+	<group name="type">
+		<groupExpression><![CDATA[$F{type}]]></groupExpression>
+		<groupHeader>
+			<band height="17">
+				<textField>
+					<reportElement x="10" y="0" width="70" height="14" uuid="1df50340-4572-422a-acf5-3f6ba287af1b"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{type} + "s:"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="4"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="265" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="50" width="572" height="59" uuid="1e2a3a13-480b-4d2d-b1c3-9b18a0971a61"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student Report]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="10" width="100" height="106" uuid="628cdbc9-07d3-4552-a660-d618f9fbc05b">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="350" y="150" width="70" height="20" uuid="dba94c4f-fdc1-4960-8800-574835a60897"/>
+				<text><![CDATA[Course Code:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="210" width="110" height="20" uuid="a206a3d7-f450-4af4-812e-85a049730193"/>
+				<text><![CDATA[Student Number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="150" width="100" height="20" uuid="0a22da59-5ce1-48c3-a9da-567a8eb35935"/>
+				<textFieldExpression><![CDATA[$P{student}.getFirstName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="150" width="110" height="20" uuid="c95ce151-78c3-47cd-9185-5636affce7ae"/>
+				<text><![CDATA[Student First Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="130" width="162" height="20" uuid="467bfa3d-fe4f-4bae-9991-fc964894c85b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Course Infomation:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="170" width="100" height="20" uuid="8393f604-4988-465e-97ca-068fe8770f2d"/>
+				<textFieldExpression><![CDATA[$P{student}.getLastName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="210" width="100" height="20" uuid="f868e83b-834d-487e-a53e-8a0d70969eda"/>
+				<textFieldExpression><![CDATA[$P{student}.getNumber()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="170" width="92" height="20" uuid="b2efa01b-94a7-4f83-893c-7fa911987c74"/>
+				<textFieldExpression><![CDATA[$P{course}.getTitle()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="150" width="92" height="20" uuid="cc18a918-de3c-4272-b15e-afe8503e1205"/>
+				<textFieldExpression><![CDATA[$P{course}.getCode()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="130" width="123" height="20" uuid="f0a95603-e102-4b05-95c8-1eb38b126a21"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student Information:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="190" width="100" height="20" uuid="ece0ac8c-e649-4eae-b0b8-f4aad82fcc90"/>
+				<textFieldExpression><![CDATA[$P{student}.getEmail()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="190" width="109" height="20" uuid="7b18f95f-e80d-40fd-96d1-1d28a71119e9"/>
+				<text><![CDATA[Student Email:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="190" width="70" height="20" uuid="388dac64-f4a1-4ce5-83a3-c734948115a7"/>
+				<text><![CDATA[Term:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="190" width="92" height="20" uuid="47c3764a-babe-42ad-bea1-dbe6e2643261"/>
+				<textFieldExpression><![CDATA[$P{course}.getTerm()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="350" y="170" width="70" height="20" uuid="163bf3db-a8e9-44a9-8044-447eb765908a"/>
+				<text><![CDATA[Course Title:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="170" width="110" height="20" uuid="e02a5545-51af-4bbe-bb2b-9c2ccc7d926a"/>
+				<text><![CDATA[Student Last Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="240" width="123" height="20" uuid="c7355697-992a-475a-9c7c-41676e316cb4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deliverables:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="70" height="20" uuid="1115faf5-ca90-46f3-8995-4da31e6472b8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="35" height="18" uuid="75bc6edd-b837-428f-b36c-095ef64640f8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="0" width="70" height="18" uuid="1c369945-a10c-4d6a-86f6-ae682654611e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Class Average]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="38" height="18" uuid="29e32ec7-e6b7-4ac6-b617-62d7cb7cd3ee"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Weight]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="125" height="20" uuid="78e9acbf-77cc-45e1-9060-6a1c70855682"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Grade" x="205" y="0" width="35" height="20" uuid="739a2f28-e3e9-4015-8549-d2334072abba"/>
+				<textFieldExpression><![CDATA[$F{grade} + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="ClassAverage" x="280" y="0" width="35" height="20" uuid="8c1298d7-b380-4825-886f-3241b3e49924"/>
+				<textFieldExpression><![CDATA[$F{classAvg} + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Weight" x="140" y="0" width="35" height="20" uuid="41268944-f12d-4a14-a430-374c871ff218"/>
+				<textFieldExpression><![CDATA[$F{weight} + "%"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="279" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="5" width="123" height="20" uuid="d13dd2ac-72dd-4d45-9183-a8a6f2e951f0"/>
+				<text><![CDATA[Assignment Average:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="45" width="124" height="20" uuid="a048e18b-3751-4c23-950c-389afe4ff33a"/>
+				<text><![CDATA[Course Average]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Percent" isPrintRepeatedValues="false" x="135" y="5" width="35" height="20" uuid="9b36da19-dfc6-4d84-97b7-d6e089b6d0a7"/>
+				<textFieldExpression><![CDATA[$P{student}.getAssignAvg()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Percent" isPrintRepeatedValues="false" x="135" y="25" width="35" height="20" uuid="33ece493-c618-4c42-b4bb-ddec1fd2f36d"/>
+				<textFieldExpression><![CDATA[$P{student}.getExamAvg()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Percent" isPrintRepeatedValues="false" x="135" y="45" width="35" height="20" uuid="2eaf4cc8-a4e8-4fa2-b6de-0b46a10aae8f"/>
+				<textFieldExpression><![CDATA[$P{student}.getCourseAvg()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="25" width="123" height="20" uuid="efdf1b4a-f876-4345-be98-15f9e233397a"/>
+				<text><![CDATA[Exam Average:]]></text>
+			</staticText>
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="70" width="572" height="200" uuid="81fb179c-ed5c-460b-9b47-8033539b44ef"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Student's Grade"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{grade}]]></valueExpression>
+						<labelExpression><![CDATA[$F{name}]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Class Average"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{classAvg}]]></valueExpression>
+						<labelExpression><![CDATA[$F{name}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<textField>
+				<reportElement x="170" y="5" width="21" height="20" uuid="3aa3f900-1921-4920-be34-077470261f3d"/>
+				<textFieldExpression><![CDATA["%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="25" width="21" height="20" uuid="59b38b8f-9ad7-4a21-9bbe-7fd5f03f49f6"/>
+				<textFieldExpression><![CDATA["%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="45" width="21" height="20" uuid="48dcfa0e-5fdb-4876-9fd1-8ba6b6393dcc"/>
+				<textFieldExpression><![CDATA["%"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,15 @@
+<div style='font-family: sans-serif'>
+  <p>
+    Student(s) from,
+  </p>
+  <p>
+    $code, $title, $term, 
+  </p>
+  <p>
+    $Message
+  </p>
+  <p>
+    Sincerely,<br/>
+    $professor
+  </p>
+</div>
